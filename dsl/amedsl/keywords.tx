@@ -1,0 +1,24 @@
+DefineKeyword: 'define';
+OfKeyword: 'of';
+WithKeyword: 'with' ;
+EndKeyword: 'end';
+
+NameKeyword: 'name'; // Used for variable names [ID]
+DescriptionKeyword: 'description';
+SymbolKeyword: 'symbol';
+
+AssetStrategyKeyword: 'asset_strategy';
+AssetClassKeyword: 'asset_class';
+AssetKeyword: 'asset';
+DescriptorKeyword: 'descriptor';
+FailureModeKeyword: 'failure_mode';
+ConditionIndicatorKeyword: 'condition_indicator';
+StressFactorKeyword: 'stress_factor';
+
+ValueAssignmentSymbol: '=';
+TypeAssignmentSymbol: ':';
+
+TypeKeyword: TextTypeKeyword | NumberWithUnitTypeKeyword | NumberTypeKeyword;
+TextTypeKeyword: 'text';
+NumberWithUnitTypeKeyword: 'number_with_unit';
+NumberTypeKeyword: 'number';

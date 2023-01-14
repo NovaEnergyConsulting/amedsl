@@ -1,0 +1,22 @@
+// This file defines the asset management strategy
+// for Power Transformers
+
+asset_strategy PowerTransformerStrategy
+    
+    description "Power Transformer Asset Strategy"
+
+    asset_class PowerTransformer
+
+        descriptor Description: text
+        descriptor PrimaryVoltage: number "This is the voltage on the primary side"
+        descriptor SecondaryVoltage: number_with_unit
+        descriptor OilVolume: number
+
+    end asset_class
+
+    asset MRTTX1 of asset_class PowerTransformer
+        Description "My caca pedorra"
+        PrimaryVoltage '132000'
+    end asset
+
+end asset_strategy

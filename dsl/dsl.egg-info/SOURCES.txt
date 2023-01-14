@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+amedsl/__init__.py
+amedsl/amedsl.tx
+dsl.egg-info/PKG-INFO
+dsl.egg-info/SOURCES.txt
+dsl.egg-info/dependency_links.txt
+dsl.egg-info/entry_points.txt
+dsl.egg-info/not-zip-safe
+dsl.egg-info/requires.txt
+dsl.egg-info/top_level.txt

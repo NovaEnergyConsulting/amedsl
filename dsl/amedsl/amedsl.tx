@@ -1,0 +1,45 @@
+import keywords
+
+// An Asset Strategy defines all the resources and
+// concepts that will be used to then run computations
+// such as scenarios, assessments, etc.
+AssetStrategy:
+    AssetStrategyKeyword name=ID
+    (DescriptionKeyword description=STRING)?
+    
+    asset_classes*=AssetClass
+    assets*=Asset
+
+    EndKeyword AssetStrategyKeyword
+;
+
+AssetClass:
+    AssetClassKeyword name=ID
+
+    descriptors*=Descriptor
+    
+    EndKeyword AssetClassKeyword
+;
+
+Asset:
+    AssetKeyword name=ID OfKeyword AssetClassKeyword assetClass=[AssetClass]
+    
+    descriptors*=DescriptorInstance
+    
+    EndKeyword AssetKeyword
+;
+
+Descriptor:
+    DescriptorKeyword name=ID
+    TypeAssignmentSymbol type=[TypeKeyword]
+    description=STRING?
+;
+
+DescriptorInstance:
+    descriptor=[Descriptor]
+    value=STRING action=check_semmantics
+;
+
+Comment:
+    /\/\/.*$/
+;
