@@ -1,0 +1,41 @@
+{
+  "name": "amedsl-lang",
+  "displayName": "amedsl-lang",
+  "description": "A domain-specific language for asset management modelling tasks",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "amedsl",
+        "aliases": [
+          "Asset Modelling Engine DSL",
+          "amedsl"
+        ],
+        "extensions": [
+          ".ame"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "amedsl",
+        "path": "./snippets/amedsl.snippets.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "amedsl",
+        "scopeName": "source.ame",
+        "path": "./syntaxes/amedsl.tmLanguage.json"
+      }
+    ]
+  }
+}

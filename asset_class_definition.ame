@@ -1,0 +1,65 @@
+// Definitions of Asset Classes
+
+asset_class PowerTransformer
+    description "This is the description of the Power Transformer asset class"
+
+    descriptor PrimaryVoltage: quantity
+    descriptor SecondaryVoltage: quantity
+end asset_class
+
+asset_class TransformerAccessories 
+    description "Generic class to declare transformer components"
+end asset_class
+
+// Definitions of Assets
+asset BUCHHOLZ of asset_class TransformerAccessories
+end asset
+
+asset Conservator1 of asset_class TransformerAccessories
+end asset
+
+asset MRTT1 of asset_class PowerTransformer
+    components [BUCHHOLZ, Conservator1]
+    PrimaryVoltage 132000
+    SecondaryVoltage 22000
+end asset
+
+asset MRTT2 of asset_class PowerTransformer
+    components [Conservator2]
+end asset
+
+asset Conservator2 of asset_class TransformerAccessories
+end asset
+
+unit_family table BasicUnitFamilies
+    // SI Base Units
+    Time;
+    Length;
+    Mass;
+    Current;
+    Temperature;
+    AmountOfSubstance;
+    LuminousIntensity;
+
+    // Composite Units
+    Voltage;
+    Power;
+end unit_family
+
+unit_of_measure table BasicUnits
+    // Table format
+    // Name, Symbol, Unit Family, Conversion Factor, IsBase?
+
+    // SI Base Units
+    Second, "s", Time, 1, base;
+    Metre, "m", Length, 1, base;
+    Kilogram, "kg", Mass, 1, base;
+    Ampere, "A", Current, 1, base;
+    Kelvin, "K", Temperature, 1, base;
+    Mole, "mol", AmountOfSubstance, 1, base;
+    Candela, "cd", LuminousIntensity, 1, base;
+
+    // Composite Units
+    Volt, "V", Voltage, 1, base;
+    kiloVolt, Voltage, 1000, "kV";
+end unit_of_measure

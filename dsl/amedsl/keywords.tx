@@ -6,7 +6,12 @@ EndKeyword: 'end';
 NameKeyword: 'name'; // Used for variable names [ID]
 DescriptionKeyword: 'description';
 SymbolKeyword: 'symbol';
+ComponentsKeyword: 'components';
+TableKeyword: 'table';
+BaseKeyword: 'base';
 
+// Asset management specific concepts
+AlgorithmKeyword: 'algorithm';
 AssetStrategyKeyword: 'asset_strategy';
 AssetClassKeyword: 'asset_class';
 AssetKeyword: 'asset';
@@ -14,11 +19,18 @@ DescriptorKeyword: 'descriptor';
 FailureModeKeyword: 'failure_mode';
 ConditionIndicatorKeyword: 'condition_indicator';
 StressFactorKeyword: 'stress_factor';
+UnitOfMeasureKeyword: 'unit_of_measure';
+UnitFamilyKeyword: 'unit_family';
 
 ValueAssignmentSymbol: '=';
 TypeAssignmentSymbol: ':';
+UnitOfMeasureSpecificationSymbol: '_';
+OpenListKeyworkd: '[';
+ListSeparatorKeyword: ',';
+CloseListKeyword: ']';
+LineTerminationKeyword: ';';
 
-TypeKeyword: TextTypeKeyword | NumberWithUnitTypeKeyword | NumberTypeKeyword;
+TypeKeyword: TextTypeKeyword | QuantityTypeKeyword | NumberTypeKeyword;
 TextTypeKeyword: 'text';
-NumberWithUnitTypeKeyword: 'number_with_unit';
+QuantityTypeKeyword: 'quantity'; // Quantities are numebrs with units
 NumberTypeKeyword: 'number';

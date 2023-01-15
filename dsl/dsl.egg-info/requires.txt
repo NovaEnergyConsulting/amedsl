@@ -1,12 +1,12 @@
 textX
 
 [dev]
-twine
 wheel
+twine
 
 [test]
+flake8
+tox
 coverage
 coveralls
-flake8
 pytest
-tox

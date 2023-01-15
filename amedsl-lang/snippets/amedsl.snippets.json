@@ -1,0 +1,15 @@
+{
+  "Asset Class Definition": {
+    "prefix": "asset_class",
+    "body": [
+      "asset_class ${1:AssetClassName}",
+      "\tdescription \"${2:Description of this asset class}\"",
+      "\t$0",
+      "end asset_class"
+    ]
+  },
+  "Descriptor": {
+    "prefix": "descriptor",
+    "body": ["descriptor ${1:DescriptorName}: ${2|text,number,quantity|}"]
+  }
+}

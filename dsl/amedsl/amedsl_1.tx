@@ -1,0 +1,67 @@
+import keywords
+
+// This is the base type, there can only
+// be one Program per file
+Program:
+    statements*=Statement
+;
+
+// Defines all the root statements and expressions
+// that can form a program
+Statement:
+    UnitOfMeasure | AssetStrategy | AssetClass | Asset
+;
+
+// An Asset Strategy defines all the resources and
+// concepts that will be used to then run computations
+// such as scenarios, assessments, etc.
+AssetStrategy:
+    AssetStrategyKeyword name=ID
+    (DescriptionKeyword description=STRING)?
+    
+    units_of_measure*=UnitOfMeasure
+    asset_classes*=AssetClass
+    assets*=Asset
+
+    EndKeyword AssetStrategyKeyword
+;
+
+Type: TextType | NumberWithUnitType | NumberType;
+TextType: STRING;
+NumberWithUnitType: NUMBER UnitOfMeasureSpecificationSymbol unit=[UnitOfMeasure];
+NumberType: NUMBER;
+
+UnitOfMeasure:
+    UnitOfMeasureKeyword name=ID
+    SymbolKeyword symbol=STRING
+    EndKeyword UnitOfMeasureKeyword
+;
+
+AssetClass:
+    AssetClassKeyword name=ID
+    descriptors*=Descriptor
+    EndKeyword AssetClassKeyword
+;
+
+Asset:
+    AssetKeyword name=ID OfKeyword AssetClassKeyword assetClass=[AssetClass]
+    
+    descriptors*=DescriptorInstance
+    
+    EndKeyword AssetKeyword
+;
+
+Descriptor:
+    DescriptorKeyword name=ID
+    TypeAssignmentSymbol type=[TypeKeyword]
+    description=STRING?
+;
+
+DescriptorInstance:
+    descriptor=[Descriptor]
+    value=Type
+;
+
+Comment:
+    /\/\/.*$/
+;

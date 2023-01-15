@@ -1,0 +1,117 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+1830144108464[ label="{Program|}"]
+
+1830144100912[ label="{*Statement|}"]
+
+1830144106576[ label="{*DefinitionStatement|}"]
+
+1830144109408[ label="{*InstantiationStatement|}"]
+
+1830144104688[ label="{AssetClass|name: ID\ldescription: STRING\l}"]
+
+1830144095248[ label="{Asset|name: ID\l}"]
+
+1830144115072[ label="{AssetComponent|}"]
+
+
+
+1830144108464 -> 1830144100912[arrowtail=diamond, dir=both, headlabel="statements 0..*"]
+1830144100912 -> 1830144104688 [dir=back]
+1830144100912 -> 1830144095248 [dir=back]
+1830144106576 -> 1830144104688 [dir=back]
+1830144109408 -> 1830144095248 [dir=back]
+1830144095248 -> 1830144104688[headlabel="asset_class "]
+1830144095248 -> 1830144115072[arrowtail=diamond, dir=both, headlabel="components 0..*"]
+1830144115072 -> 1830144095248[headlabel="asset "]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\/.*$</td>
+	</tr>
+	<tr>
+		<td><b>AlgorithmKeyword</b></td><td>algorithm</td>
+	</tr>
+	<tr>
+		<td><b>AssetClassKeyword</b></td><td>asset_class</td>
+	</tr>
+	<tr>
+		<td><b>AssetKeyword</b></td><td>asset</td>
+	</tr>
+	<tr>
+		<td><b>AssetStrategyKeyword</b></td><td>asset_strategy</td>
+	</tr>
+	<tr>
+		<td><b>ComponentKeyword</b></td><td>component</td>
+	</tr>
+	<tr>
+		<td><b>ConditionIndicatorKeyword</b></td><td>condition_indicator</td>
+	</tr>
+	<tr>
+		<td><b>DefineKeyword</b></td><td>define</td>
+	</tr>
+	<tr>
+		<td><b>DescriptionKeyword</b></td><td>description</td>
+	</tr>
+	<tr>
+		<td><b>DescriptorKeyword</b></td><td>descriptor</td>
+	</tr>
+	<tr>
+		<td><b>EndKeyword</b></td><td>end</td>
+	</tr>
+	<tr>
+		<td><b>FailureModeKeyword</b></td><td>failure_mode</td>
+	</tr>
+	<tr>
+		<td><b>NameKeyword</b></td><td>name</td>
+	</tr>
+	<tr>
+		<td><b>NumberTypeKeyword</b></td><td>number</td>
+	</tr>
+	<tr>
+		<td><b>NumberWithUnitTypeKeyword</b></td><td>number_with_unit</td>
+	</tr>
+	<tr>
+		<td><b>OfKeyword</b></td><td>of</td>
+	</tr>
+	<tr>
+		<td><b>StressFactorKeyword</b></td><td>stress_factor</td>
+	</tr>
+	<tr>
+		<td><b>SymbolKeyword</b></td><td>symbol</td>
+	</tr>
+	<tr>
+		<td><b>TextTypeKeyword</b></td><td>text</td>
+	</tr>
+	<tr>
+		<td><b>TypeAssignmentSymbol</b></td><td>:</td>
+	</tr>
+	<tr>
+		<td><b>TypeKeyword</b></td><td></td>
+	</tr>
+	<tr>
+		<td><b>UnitOfMeasureKeyword</b></td><td>unit_of_measure</td>
+	</tr>
+	<tr>
+		<td><b>UnitOfMeasureSpecificationSymbol</b></td><td>_</td>
+	</tr>
+	<tr>
+		<td><b>ValueAssignmentSymbol</b></td><td>=</td>
+	</tr>
+	<tr>
+		<td><b>WithKeyword</b></td><td>with</td>
+	</tr>
+</table> >]
+
+
+}

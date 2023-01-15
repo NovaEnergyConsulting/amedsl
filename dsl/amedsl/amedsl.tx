@@ -1,32 +1,64 @@
 import keywords
 
-// An Asset Strategy defines all the resources and
-// concepts that will be used to then run computations
-// such as scenarios, assessments, etc.
-AssetStrategy:
-    AssetStrategyKeyword name=ID
-    (DescriptionKeyword description=STRING)?
-    
-    asset_classes*=AssetClass
-    assets*=Asset
-
-    EndKeyword AssetStrategyKeyword
+// This is the base type, there can only
+// be one Program per file
+Program:
+    statements*=Statement
 ;
 
-AssetClass:
-    AssetClassKeyword name=ID
-
-    descriptors*=Descriptor
-    
-    EndKeyword AssetClassKeyword
+// Defines all the root statements and expressions
+// that a program can declare
+Statement:
+    DefinitionStatement
+    | InstantiationStatement
+    | TableStatement
 ;
 
-Asset:
-    AssetKeyword name=ID OfKeyword AssetClassKeyword assetClass=[AssetClass]
-    
-    descriptors*=DescriptorInstance
-    
-    EndKeyword AssetKeyword
+Comment:
+    /\/\/.*$/
+;
+
+DefinitionStatement:
+    AssetClass
+;
+
+InstantiationStatement:
+    Asset
+;
+
+TableStatement:
+    UnitFamiliesTable | UnitsOfMeasureTable
+;
+
+UnitFamiliesTable:
+    UnitFamilyKeyword TableKeyword name=ID
+        unit_families*=UnitFamily
+    EndKeyword UnitFamilyKeyword
+;
+
+UnitFamily:
+    name=ID
+    ListSeparatorKeyword? description=STRING?
+    LineTerminationKeyword
+;
+
+UnitsOfMeasureTable:
+    UnitOfMeasureKeyword TableKeyword name=ID
+        units*=UnitOfMeasure
+    EndKeyword UnitOfMeasureKeyword
+;
+
+UnitOfMeasure:
+    name=ID 
+    (ListSeparatorKeyword symbol=STRING
+    ListSeparatorKeyword family=[UnitFamily]
+    ListSeparatorKeyword? factor=NUMBER?
+    ListSeparatorKeyword? base?=BaseKeyword)#
+    LineTerminationKeyword
+;
+
+Quantity:
+    NUMBER UnitOfMeasureSpecificationSymbol unit=[UnitOfMeasure]
 ;
 
 Descriptor:
@@ -37,9 +69,23 @@ Descriptor:
 
 DescriptorInstance:
     descriptor=[Descriptor]
-    value=STRING action=check_semmantics
+    (value=STRING | value=NUMBER | value=Quantity)
 ;
 
-Comment:
-    /\/\/.*$/
+AssetClass:
+    AssetClassKeyword name=ID
+        (DescriptionKeyword description=STRING)?
+        descriptors*=Descriptor
+    EndKeyword AssetClassKeyword
 ;
+
+Asset:
+    AssetKeyword name=ID OfKeyword AssetClassKeyword asset_class=[AssetClass]
+        (descriptors*=DescriptorInstance
+        (ComponentsKeyword
+        OpenListKeyworkd
+        components*=[Asset][',']
+        CloseListKeyword)?)*
+    EndKeyword AssetKeyword
+;
+
