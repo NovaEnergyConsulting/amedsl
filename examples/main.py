@@ -1,5 +1,5 @@
 import amedsl
-from interpreter.interpreter import interpret
+from src.interpreter import interpret
 
 
 def repl():

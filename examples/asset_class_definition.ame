@@ -67,11 +67,11 @@ unit_family table BasicUnitFamilies
     // Composite Units
     Voltage;
     Power;
-end unit_family
+end table
 
 unit_of_measure table SpecialUnits
     // Metre, "m", Length, 1, base;
-end unit_of_measure
+end table
 
 unit_of_measure table BasicUnits
     // Table format

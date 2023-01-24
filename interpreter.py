@@ -1,6 +1,5 @@
 from textx import scoping
 import amedsl
-from amedsl.object_processors import descriptor_instance_processor
 
 
 def print_props(obj):
@@ -23,12 +22,8 @@ def print_statements(program):
 
 def interpret():
     mm = amedsl.amedsl_language.metamodel()
-    obj_processors = {
-        'DescriptorInstance': descriptor_instance_processor,
-    }
-    mm.register_obj_processors(obj_processors)
-    # mm.register_scope_providers({"*.*": scoping.providers.FQN()})
-    program = mm.model_from_file("asset_class_definition.ame")
+
+    program = mm.model_from_file("examples/asset_class_definition.ame")
 
     print_statements(program)
 

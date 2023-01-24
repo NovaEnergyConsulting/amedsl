@@ -29,7 +29,7 @@ TableDefinition:
 UnitFamiliesTableDefinition:
     UnitFamilyKeyword TableKeyword name=ID
         unit_families*=UnitFamily
-    EndKeyword UnitFamilyKeyword
+    EndKeyword TableKeyword
 ;
 
 InstantiationStatement:
