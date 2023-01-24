@@ -16,19 +16,24 @@ AssetStrategyKeyword: 'asset_strategy';
 AssetClassKeyword: 'asset_class';
 AssetKeyword: 'asset';
 DescriptorKeyword: 'descriptor';
+HealthIndicatorKeyword: 'health_indicator';
 FailureModeKeyword: 'failure_mode';
 ConditionIndicatorKeyword: 'condition_indicator';
 StressFactorKeyword: 'stress_factor';
 UnitOfMeasureKeyword: 'unit_of_measure';
 UnitFamilyKeyword: 'unit_family';
+RiskMatrixKeyword: 'risk_matrix';
+RiskKeyword: 'risk';
+ScenarioKeyworkd: 'scenario';
+AlgorithmKeyword: 'algotrithm';
 
 ValueAssignmentSymbol: '=';
 TypeAssignmentSymbol: ':';
-UnitOfMeasureSpecificationSymbol: '_';
 OpenListKeyworkd: '[';
 ListSeparatorKeyword: ',';
 CloseListKeyword: ']';
 LineTerminationKeyword: ';';
+UnitOfMeasureSeparatorKeyword: '_';
 
 TypeKeyword: TextTypeKeyword | QuantityTypeKeyword | NumberTypeKeyword;
 TextTypeKeyword: 'text';

@@ -11,7 +11,6 @@ Program:
 Statement:
     DefinitionStatement
     | InstantiationStatement
-    | TableStatement
 ;
 
 Comment:
@@ -19,21 +18,22 @@ Comment:
 ;
 
 DefinitionStatement:
-    AssetClass
+    AssetClassDefinition
+    | TableDefinition
 ;
 
-InstantiationStatement:
-    Asset
+TableDefinition:
+    UnitFamiliesTableDefinition | UnitsOfMeasureTableDefinition
 ;
 
-TableStatement:
-    UnitFamiliesTable | UnitsOfMeasureTable
-;
-
-UnitFamiliesTable:
+UnitFamiliesTableDefinition:
     UnitFamilyKeyword TableKeyword name=ID
         unit_families*=UnitFamily
     EndKeyword UnitFamilyKeyword
+;
+
+InstantiationStatement:
+    AssetInstantiation
 ;
 
 UnitFamily:
@@ -42,10 +42,10 @@ UnitFamily:
     LineTerminationKeyword
 ;
 
-UnitsOfMeasureTable:
+UnitsOfMeasureTableDefinition:
     UnitOfMeasureKeyword TableKeyword name=ID
         units*=UnitOfMeasure
-    EndKeyword UnitOfMeasureKeyword
+    EndKeyword TableKeyword
 ;
 
 UnitOfMeasure:
@@ -58,11 +58,23 @@ UnitOfMeasure:
 ;
 
 Quantity:
-    NUMBER UnitOfMeasureSpecificationSymbol unit=[UnitOfMeasure]
+    '(' value=NUMBER unit=[UnitOfMeasure] ')'
 ;
 
 Descriptor:
     DescriptorKeyword name=ID
+    TypeAssignmentSymbol type=[TypeKeyword]
+    description=STRING?
+;
+
+HealthIndicator:
+    HealthIndicatorKeyword name=ID
+    TypeAssignmentSymbol type=[TypeKeyword]
+    description=STRING?
+;
+
+StressFactor:
+    StressFactorKeyword name=ID
     TypeAssignmentSymbol type=[TypeKeyword]
     description=STRING?
 ;
@@ -72,19 +84,37 @@ DescriptorInstance:
     (value=STRING | value=NUMBER | value=Quantity)
 ;
 
-AssetClass:
+HealthIndicatorInstance:
+    health_indicator=[HealthIndicator]
+    (value=STRING | value=NUMBER | value=Quantity)
+;
+
+StressFactorInstance:
+    stress_factor=[HealthIndicator]
+    (value=STRING | value=NUMBER | value=Quantity)
+;
+
+AssetClassProperty:
+    Descriptor | HealthIndicator | StressFactor
+;
+
+AssetClassDefinition:
     AssetClassKeyword name=ID
         (DescriptionKeyword description=STRING)?
-        descriptors*=Descriptor
+        properties*=AssetClassProperty
     EndKeyword AssetClassKeyword
 ;
 
-Asset:
-    AssetKeyword name=ID OfKeyword AssetClassKeyword asset_class=[AssetClass]
-        (descriptors*=DescriptorInstance
+PropertyInstance:
+    DescriptorInstance | HealthIndicatorInstance | StressFactorInstance
+;
+
+AssetInstantiation:
+    AssetKeyword name=ID OfKeyword AssetClassKeyword asset_class=[AssetClassDefinition]
+        (property_values*=PropertyInstance
         (ComponentsKeyword
         OpenListKeyworkd
-        components*=[Asset][',']
+        components*=[AssetInstantiation][',']
         CloseListKeyword)?)*
     EndKeyword AssetKeyword
 ;

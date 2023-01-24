@@ -3,32 +3,55 @@
 asset_class PowerTransformer
     description "This is the description of the Power Transformer asset class"
 
+    descriptor ID: text
+    descriptor OilVolume: number
     descriptor PrimaryVoltage: quantity
     descriptor SecondaryVoltage: quantity
+
+    health_indicator DissolvedGasAnalysis: quantity
+
 end asset_class
 
 asset_class TransformerAccessories 
     description "Generic class to declare transformer components"
 end asset_class
 
+asset_class ConservatorTanks
+    description "Asset class for conservator tanks"
+
+    descriptor Diameter: quantity
+    descriptor Length: quantity
+end asset_class
+
 // Definitions of Assets
-asset BUCHHOLZ of asset_class TransformerAccessories
-end asset
 
-asset Conservator1 of asset_class TransformerAccessories
-end asset
-
-asset MRTT1 of asset_class PowerTransformer
-    components [BUCHHOLZ, Conservator1]
-    PrimaryVoltage 132000
-    SecondaryVoltage 22000
-end asset
-
-asset MRTT2 of asset_class PowerTransformer
-    components [Conservator2]
+// Assets without any members
+asset Buchholz_Relay of asset_class TransformerAccessories
 end asset
 
 asset Conservator2 of asset_class TransformerAccessories
+end asset
+
+// Asset with just components
+asset MRTT2 of asset_class PowerTransformer
+    components [ Conservator2 ]
+end asset
+
+// Asset with just descriptors
+asset Conservator1 of asset_class ConservatorTanks
+    Diameter (1 Metre)
+    Length (2.5 Metre)
+end asset
+
+// Asset with components and other properties
+asset MRTT1 of asset_class PowerTransformer
+    components [ Buchholz_Relay, Conservator1 ]
+    // Descriptors
+    ID "MRTT1"
+    OilVolume 300
+    OilVolume 300.50
+    PrimaryVoltage (132000 Volt)
+    SecondaryVoltage (22000 Ampere)
 end asset
 
 unit_family table BasicUnitFamilies
@@ -46,6 +69,10 @@ unit_family table BasicUnitFamilies
     Power;
 end unit_family
 
+unit_of_measure table SpecialUnits
+    // Metre, "m", Length, 1, base;
+end unit_of_measure
+
 unit_of_measure table BasicUnits
     // Table format
     // Name, Symbol, Unit Family, Conversion Factor, IsBase?
@@ -62,4 +89,4 @@ unit_of_measure table BasicUnits
     // Composite Units
     Volt, "V", Voltage, 1, base;
     kiloVolt, Voltage, 1000, "kV";
-end unit_of_measure
+end table
