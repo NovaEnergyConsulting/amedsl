@@ -3,6 +3,9 @@ README.md
 setup.cfg
 setup.py
 amedsl/__init__.py
+amedsl/amedsl.tx
+amedsl/amedsl_1.tx
+amedsl/keywords.tx
 amedsl/object_processors.py
 amedsl.egg-info/PKG-INFO
 amedsl.egg-info/SOURCES.txt
