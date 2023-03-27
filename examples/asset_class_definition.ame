@@ -54,6 +54,9 @@ asset MRTT1 of asset_class PowerTransformer
     SecondaryVoltage (22000 Ampere)
 end asset
 
+algorithm myAlgo
+end algorithm
+
 unit_family table BasicUnitFamilies
     // SI Base Units
     Time;
@@ -90,3 +93,5 @@ unit_of_measure table BasicUnits
     Volt, "V", Voltage, 1, base;
     kiloVolt, Voltage, 1000, "kV";
 end table
+
+

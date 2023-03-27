@@ -15,6 +15,7 @@ AlgorithmKeyword: 'algorithm';
 AssetStrategyKeyword: 'asset_strategy';
 AssetClassKeyword: 'asset_class';
 AssetKeyword: 'asset';
+AssetsKeyword: 'assets';
 DescriptorKeyword: 'descriptor';
 HealthIndicatorKeyword: 'health_indicator';
 FailureModeKeyword: 'failure_mode';

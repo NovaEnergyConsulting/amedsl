@@ -1,0 +1,27 @@
+asset Component1
+end asset
+
+asset Component2
+end asset
+
+asset Component3
+end asset
+
+asset Component4
+end asset
+
+asset Component5
+    assets [Component3, Component4]
+end asset
+
+asset TX1
+    assets [Component5]
+end asset
+
+asset TX2
+    assets [TX1]
+end asset
+
+asset TX3
+    assets [TX1, TX2]
+end asset

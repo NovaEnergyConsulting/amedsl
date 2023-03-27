@@ -1,4 +1,5 @@
 {
   "python.defaultInterpreterPath": "python3",
-  "python.analysis.extraPaths": ["./dsl"]
+  "python.analysis.extraPaths": ["./dsl"],
+  "python.analysis.typeCheckingMode": "off"
 }
