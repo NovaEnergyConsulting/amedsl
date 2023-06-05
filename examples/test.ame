@@ -6,12 +6,10 @@ unit_of_measure Volts
 end unit_of_measure
 
 asset_class PowerTransformer
-
     descriptor Description: text
     descriptor PrimaryVoltage: number "This is the voltage on the primary side"
     descriptor SecondaryVoltage: number_with_unit
     descriptor OilVolume: number
-
 end asset_class
 
 asset MRTTX1 of asset_class PowerTransformer

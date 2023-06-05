@@ -1,0 +1,2 @@
+[textx_languages]
+amedsl = amedsl:amedsl_language
